@@ -1,17 +1,17 @@
-import json
+# import json
 from typing import Optional, Tuple
 from basicauth import decode
 
 from app.access_control.schema import BasicAuthCredentials
-from app.config.config import Config
+# from app.config.config import Config
 
 
 class AuthenticationService:
     __config: dict = {}
 
-    @classmethod
-    def set_config(cls):
-        AuthenticationService.__config = json.loads(Config.AUTH)
+    # @classmethod
+    # def set_config(cls):
+    #     AuthenticationService.__config = json.loads(Config.AUTH)
 
     @classmethod
     def basic_auth(self, encoded_str: str) -> bool:
