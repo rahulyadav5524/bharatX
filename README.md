@@ -20,7 +20,7 @@
 
 # working curl request
 ```
-curl --location 'https://bharat-x-sepia.vercel.app/search/' \
+curl --location 'https://bharat-x-sepia.vercel.app/api/search/' \
 --header 'Content-Type: application/json' \
 --header 'Authorization: Basic YmhhcmF0eDpzZWxlY3RlZC1jYW5kaWRhdGUtMQ==' \
 --data '{

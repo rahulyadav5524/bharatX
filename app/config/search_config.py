@@ -14,7 +14,7 @@ class SearchConfig:
 
     # Search limits
     MAX_RESULTS = int(os.getenv("MAX_SEARCH_RESULTS", "20"))
-    DEFAULT_RESULTS = int(os.getenv("DEFAULT_SEARCH_RESULTS", "10"))
+    DEFAULT_RESULTS = int(os.getenv("DEFAULT_SEARCH_RESULTS", "5"))
 
     # User agents for different requests
     USER_AGENTS = [
