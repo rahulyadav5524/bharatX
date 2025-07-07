@@ -3,7 +3,7 @@ from typing import Optional, Tuple
 from basicauth import decode
 
 from app.access_control.schema import BasicAuthCredentials
-from config import Config
+from app.config.config import Config
 
 
 class AuthenticationService:

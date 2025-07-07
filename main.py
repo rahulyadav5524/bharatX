@@ -10,6 +10,9 @@ AuthenticationService.set_config()
 
 app.include_router(api_router)
 
+# This is important for Vercel
+handler = app
+
 if __name__ == "__main__":
     uvicorn.run(
         "main:app",
