@@ -1,17 +1,15 @@
 import uvicorn
 from fastapi import FastAPI
 
-# from app.access_control.authentication import AuthenticationService
+from app.access_control.authentication import AuthenticationService
 from app.interface.routes import api_router
 
 app = FastAPI()
 
-# AuthenticationService.set_config()
+AuthenticationService.set_config()
 
 app.include_router(api_router)
 
-# This is important for Vercel
-handler = app
 
 if __name__ == "__main__":
     uvicorn.run(
