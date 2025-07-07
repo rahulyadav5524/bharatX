@@ -1,11 +1,8 @@
-import './App.css'
+import SearchDashboard from "./search-dashboard"
 
 const App = ()  => {
   return (
-    <div>
-      <input type="text" placeholder="Enter your name" />
-      <button>Submit</button>
-    </div>
+      <SearchDashboard />
   )
 }
 
