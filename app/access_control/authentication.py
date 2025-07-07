@@ -1,5 +1,6 @@
-import base64
 import json
+from typing import Optional, Tuple
+from basicauth import decode
 
 from app.access_control.schema import BasicAuthCredentials
 from config import Config
@@ -10,8 +11,9 @@ class AuthenticationService:
 
     @classmethod
     def set_config(cls):
-        AuthenticationService.__config = Config.AUTH
+        AuthenticationService.__config = json.loads(Config.AUTH)
 
+    @classmethod
     def basic_auth(self, encoded_str: str) -> bool:
         creds, error = self.get_basic_auth_credentials(encoded_str)
         if error:
@@ -28,22 +30,12 @@ class AuthenticationService:
             return True
         return False
 
+    @classmethod
     def get_basic_auth_credentials(
-        self, encoded_str: str
-    ) -> tuple[BasicAuthCredentials | None, str | None]:
-        if not encoded_str:
-            return None, "No credentials provided"
+        cls, encoded_str: str
+    ) -> Tuple[Optional[BasicAuthCredentials], Optional[str]]:
         try:
-            username, password = self.decode_basic_auth(encoded_str)
-            return BasicAuthCredentials(username=username, password=password), None
-        except Exception as e:
-            return None, f"Invalid credentials format: {str(e)}"
-
-    def decode_basic_auth(self, encoded_str: str) -> tuple[str, str]:
-        try:
-            decoded_bytes = base64.b64decode(encoded_str)
-            decoded_str = decoded_bytes.decode("utf-8")
-            username, password = decoded_str.split(":", 1)
-            return username, password
-        except (ValueError, UnicodeDecodeError) as e:
-            raise ValueError(f"Invalid basic auth format: {str(e)}")
+            username, password = decode(encoded_str)
+        except Exception as err:
+            return None, repr(err)
+        return BasicAuthCredentials(username=username, password=password), None
